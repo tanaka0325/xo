@@ -2,6 +2,7 @@ package loader
 
 import (
 	"context"
+	"fmt"
 	"regexp"
 	"strings"
 
@@ -36,6 +37,8 @@ func MysqlGoType(ctx context.Context, d xo.Datatype) (string, string, error) {
 	typ, nullable, prec := d.Type, d.Nullable, d.Prec
 	// extract unsigned
 	unsigned := false
+	fmt.Println(typ)
+	fmt.Println(strings.HasSuffix(typ, " unsigned"))
 	if strings.HasSuffix(typ, " unsigned") {
 		typ, unsigned = typ[:len(typ)-len(" unsigned")], true
 	}
